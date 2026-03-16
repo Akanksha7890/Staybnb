@@ -31,17 +31,22 @@ function ListingContext({children}) {
     let {serverUrl} = useContext(authDataContext)
 
     const handleSearch = async (data) => {
-       try {
+     try {
     if (!data || data.trim() === "") {
         setNewListData(listingData);
         return;
     }
-    let result = await axios.get(serverUrl + `/api/listing/search?query=${data}`)
-    setSearchData(result.data)
-    setNewListData(result.data)
+
+    let result = await axios.get(`${serverUrl}/api/listing/search`, {
+        params: { query: data }
+    });
+
+    setSearchData(result.data);
+    setNewListData(result.data);
+
 } catch (error) {
-    setSearchData([])
-    console.log(error)
+    setSearchData([]);
+    console.log(error);
 }
 
     const handleAddListing = async () => {
