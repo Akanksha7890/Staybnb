@@ -31,7 +31,8 @@ function ListingContext({children}) {
     let {serverUrl} = useContext(authDataContext)
 
     const handleSearch = async (data) => {
-     try {
+    const handleSearch = async (data) => {
+ try {
     if (!data || data.trim() === "") {
         setNewListData(listingData);
         return;
@@ -44,10 +45,12 @@ function ListingContext({children}) {
     setSearchData(result.data);
     setNewListData(result.data);
 
-} catch (error) {
+ } catch (error) {
     setSearchData([]);
     console.log(error);
-}
+ }
+
+} 
 
     const handleAddListing = async () => {
         setAdding(true)
